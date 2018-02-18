@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import AppRouter from "./routers/AppRouter";
 import getStore from "./store/configureStore";
 import { createExpense } from "./actions/expenses";
@@ -21,4 +22,10 @@ const { expenses, filters } = store.getState();
 const visibleExpenses = getVisibleExpenses(expenses, filters);
 console.log(visibleExpenses);
 
-ReactDOM.render(<AppRouter />, document.getElementById("app"));
+const template = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+);
+
+ReactDOM.render(template, document.getElementById("app"));
