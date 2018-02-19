@@ -16,7 +16,6 @@ const store = getStore();
 const expenseOne = store.dispatch(createExpense({ description: "Water bill", amount: 1700, createdAt: 31232123 }));
 const expenseTwo = store.dispatch(createExpense({ description: "Gas bill", amount: 2000, createdAt: 78763245 }));
 const expenseThree = store.dispatch(createExpense({ description: "Rent", amount: 20000, createdAt: 56947321 }));
-store.dispatch(setTextFilter("bill"));
 
 const { expenses, filters } = store.getState();
 const visibleExpenses = getVisibleExpenses(expenses, filters);
