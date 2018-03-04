@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import moment from "moment";
 import ExpenseForm from "../../components/ExpenseForm";
 import expenses from "../fixtures/expenses";
 
@@ -67,4 +68,39 @@ test("should not set amount if invalud input", () => {
     });
 
     expect(wrapper.state("amount")).toBe("");
+});
+
+test("should send data for valid form submission", () => {
+    const onSumbitSpy = jest.fn();
+    const expenseData = expenses[2];
+    const wrapper = shallow(<ExpenseForm onSubmit={onSumbitSpy} expense={expenseData} />);
+
+    wrapper.find("form").simulate("submit", {
+        preventDefault: () => {}
+    });
+
+    expect(onSumbitSpy).toHaveBeenLastCalledWith({
+        description: expenseData.description,
+        amount: expenseData.amount,
+        createdAt: expenseData.createdAt,
+        note: expenseData.note
+    });
+});
+
+test("should set new date on date change", () => {
+    const now = moment();
+    const wrapper = shallow(<ExpenseForm />);
+
+    wrapper.find("SingleDatePicker").prop("onDateChange")(now);
+
+    expect(wrapper.state("createdAt")).toEqual(now);
+});
+
+test("should set calendar focus on change", () => {
+    const focused = true;
+    const wrapper = shallow(<ExpenseForm />);
+
+    wrapper.find("SingleDatePicker").prop("onFocusChange")({ focused });
+
+    expect(wrapper.state("calendarFocused")).toBe(focused);
 });
