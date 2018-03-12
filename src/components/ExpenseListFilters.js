@@ -8,15 +8,18 @@ class ExpenseListFilters extends React.Component {
         focusedDateInput: null
     };
     changeTextFilter = (e) => {
-        this.props.dispatch(setTextFilter(e.target.value))
+        this.props.setTextFilter(e.target.value);
     };
     changeSortBy = (e) => {
-        const action = (e.target.value === "amount") ? sortByAmount : sortByDate;
-        this.props.dispatch(action());
+        if (e.target.value === "amount") {
+            this.props.sortByAmount();
+        } else {
+            this.props.sortByDate();
+        }
     };
     changeDateFilter = ({ startDate, endDate }) => {
-        this.props.dispatch(setStartDate(startDate));
-        this.props.dispatch(setEndDate(endDate));
+        this.props.setStartDate(startDate);
+        this.props.setEndDate(endDate);
     };
     changeFocusedDateInput = (focusedDateInput) => {
         this.setState({ focusedDateInput })
@@ -56,4 +59,12 @@ const mapStateToProps = (state) => ({
     filters: state.filters
 });
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+const mapDispatchToProps = (dispatch) => ({
+    setTextFilter: (value) => { dispatch(setTextFilter(value)); },
+    sortByAmount: () => { dispatch(sortByAmount()); },
+    sortByDate: () => { dispatch(sortByDate()); },
+    setStartDate: (startDate) => { dispatch(setStartDate(startDate)); },
+    setEndDate: (endDate) => { dispatch(setEndDate(endDate)); }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
