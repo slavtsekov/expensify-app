@@ -8,9 +8,9 @@ exports[`should render ExpenseListItem with data 1`] = `
   >
     Gum
   </Link>
-   - 
-  195
-   - 
-  0
+  -
+  $1.95
+  -
+  January 1st, 1970
 </div>
 `;
