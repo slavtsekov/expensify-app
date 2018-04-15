@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import AppRouter from "./routers/AppRouter";
 import getStore from "./store/configureStore";
-import { createExpense } from "./actions/expenses";
+import { startSetExpenses } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
 import getVisibleExpenses from "./selectors/expenses";
 import "./firebase/firebase";
@@ -20,4 +20,9 @@ const template = (
     </Provider>
 );
 
-ReactDOM.render(template, document.getElementById("app"));
+ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(template, document.getElementById("app"));
+});
+
