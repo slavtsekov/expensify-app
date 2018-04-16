@@ -4,17 +4,17 @@ import { EditExpensePage } from "../../components/EditExpensePage";
 import expenses from "../fixtures/expenses";
 
 let editedExpense, 
-    editExpenseSpy, 
+    startEditExpenseSpy, 
     startRemoveExpenseSpy, 
     historyMock, 
     wrapper;
 
 beforeEach(() => {
     editedExpense = expenses[1];
-    editExpenseSpy = jest.fn();
+    startEditExpenseSpy = jest.fn();
     startRemoveExpenseSpy = jest.fn();
     historyMock = { push: jest.fn() };
-    wrapper = shallow(<EditExpensePage expense={editedExpense} editExpense={editExpenseSpy} startRemoveExpense={startRemoveExpenseSpy} history={historyMock} />);
+    wrapper = shallow(<EditExpensePage expense={editedExpense} startEditExpense={startEditExpenseSpy} startRemoveExpense={startRemoveExpenseSpy} history={historyMock} />);
 });
 
 test("should render EditExpensePage correctly", () => {
@@ -26,7 +26,7 @@ test("should handle expense edit", () => {
     wrapper.find("ExpenseForm").prop("onSubmit")(updated);
 
     expect(historyMock.push).toHaveBeenLastCalledWith("/");
-    expect(editExpenseSpy).toHaveBeenLastCalledWith(editedExpense.id, updated);
+    expect(startEditExpenseSpy).toHaveBeenLastCalledWith(editedExpense.id, updated);
 });
 
 test("should handle expense delete", () => {
