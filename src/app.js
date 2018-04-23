@@ -6,7 +6,7 @@ import getStore from "./store/configureStore";
 import { startSetExpenses } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
 import getVisibleExpenses from "./selectors/expenses";
-import "./firebase/firebase";
+import { firebase } from "./firebase/firebase";
 
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
@@ -24,5 +24,13 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
 
 store.dispatch(startSetExpenses()).then(() => {
     ReactDOM.render(template, document.getElementById("app"));
+});
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log(`log in ${user}`);
+    } else {
+        console.log("log out");
+    }
 });
 
