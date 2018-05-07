@@ -7,6 +7,7 @@ exports[`should render ExpenseForm correctly 1`] = `
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Description"
       type="text"
@@ -14,6 +15,7 @@ exports[`should render ExpenseForm correctly 1`] = `
     />
     <br />
     <input
+      className="text-input"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
@@ -98,6 +100,7 @@ exports[`should render ExpenseForm correctly 1`] = `
     />
     <br />
     <textarea
+      className="textarea"
       onChange={[Function]}
       placeholder="Add a note for your expense (optional)"
       value=""
@@ -118,6 +121,7 @@ exports[`should render ExpenseForm with edit data correctly 1`] = `
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Description"
       type="text"
@@ -125,6 +129,7 @@ exports[`should render ExpenseForm with edit data correctly 1`] = `
     />
     <br />
     <input
+      className="text-input"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
@@ -209,6 +214,7 @@ exports[`should render ExpenseForm with edit data correctly 1`] = `
     />
     <br />
     <textarea
+      className="textarea"
       onChange={[Function]}
       placeholder="Add a note for your expense (optional)"
       value=""
@@ -229,6 +235,7 @@ exports[`should render error for invalid form submission 1`] = `
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Description"
       type="text"
@@ -236,6 +243,7 @@ exports[`should render error for invalid form submission 1`] = `
     />
     <br />
     <input
+      className="text-input"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
@@ -320,6 +328,7 @@ exports[`should render error for invalid form submission 1`] = `
     />
     <br />
     <textarea
+      className="textarea"
       onChange={[Function]}
       placeholder="Add a note for your expense (optional)"
       value=""
@@ -343,6 +352,7 @@ exports[`should render error for invalid form submission 2`] = `
   >
     <input
       autoFocus={true}
+      className="text-input"
       onChange={[Function]}
       placeholder="Description"
       type="text"
@@ -350,6 +360,7 @@ exports[`should render error for invalid form submission 2`] = `
     />
     <br />
     <input
+      className="text-input"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
@@ -434,6 +445,7 @@ exports[`should render error for invalid form submission 2`] = `
     />
     <br />
     <textarea
+      className="textarea"
       onChange={[Function]}
       placeholder="Add a note for your expense (optional)"
       value=""

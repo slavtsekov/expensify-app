@@ -30,13 +30,16 @@ export class ExpenseListFilters extends React.Component {
                 <div className="input-group">
                     <div className="input-group__item">
                         <input 
-                            type="text" 
+                            type="text"
+                            className="text-input"
                             value={this.props.filters.text}
+                            placeholder="Search expenses"
                             onChange={this.changeTextFilter} 
                         />                    
                     </div>
                     <div className="input-group__item">
                         <select
+                            className="select"
                             value={this.props.filters.sortBy}
                             onChange={this.changeSortBy}>
                             <option value="date">Date</option>
