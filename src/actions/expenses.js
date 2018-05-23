@@ -5,6 +5,21 @@ const addExpense = (expense) => ({
     expense
 });
 
+const startAddExpense2 = (expenseData = {}) => {
+    const { 
+        description = "",
+        note = "",
+        amount = 0,
+        createdAt = 0
+    } = expenseData;
+    const expense = { description, note, amount, createdAt };
+
+    return {
+        type: "START_ADD_EXPENSE",
+        expense
+    };
+};
+
 const startAddExpense = (expenseData = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
@@ -45,6 +60,12 @@ const editExpense = (id, edited) => ({
     edited
 });
 
+const startEditExpense2 = (id, edited) => ({
+    type: "START_EDIT_EXPENSE",
+    id,
+    edited
+});
+
 const startEditExpense = (id, edited) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
@@ -79,11 +100,13 @@ const startSetExpenses = () => {
 
 export { 
     addExpense, 
-    startAddExpense, 
+    startAddExpense,
+    startAddExpense2,
     removeExpense,
     startRemoveExpense,
     editExpense,
     startEditExpense,
+    startEditExpense2,
     setExpenses,
     startSetExpenses
 };
