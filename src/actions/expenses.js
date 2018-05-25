@@ -54,6 +54,11 @@ const startRemoveExpense = ({ id }) => {
     };
 };
 
+const startRemoveExpense2 = ({ id }) => ({
+    type: "START_REMOVE_EXPENSE",
+    id 
+});
+
 const editExpense = (id, edited) => ({
     type: "EDIT_EXPENSE",
     id,
@@ -104,6 +109,7 @@ export {
     startAddExpense2,
     removeExpense,
     startRemoveExpense,
+    startRemoveExpense2,
     editExpense,
     startEditExpense,
     startEditExpense2,

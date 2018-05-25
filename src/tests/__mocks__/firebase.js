@@ -10,6 +10,11 @@ const database = () => ({
             return new Promise(function(resolve, reject) {
                 resolve();
             });
+        },
+        remove: () => {
+            return new Promise(function(resolve, reject) {
+                resolve();
+            });           
         }
     })
 });

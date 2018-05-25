@@ -8,4 +8,8 @@ const edit = (uid, expenseId, edited) => {
     return database.ref(`users/${uid}/expenses/${expenseId}`).update(edited);
 };
 
-export { add, edit };
+const remove = (uid, expenseId) => {
+    return database.ref(`users/${uid}/expenses/${expenseId}`).remove()
+}
+
+export { add, edit, remove };

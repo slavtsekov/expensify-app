@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { addExpenseSaga, editExpenseSaga } from "../../sagas/sagas";
+import { addExpenseSaga, editExpenseSaga, removeExpenseSaga } from "../../sagas/sagas";
 import expenses from "../fixtures/expenses";
-import { addExpense, startAddExpense2, editExpense, startEditExpense2 } from "../../actions/expenses";
+import { addExpense, startAddExpense2, editExpense, startEditExpense2, startRemoveExpense2, removeExpense } from "../../actions/expenses";
 
 test("should execute effects for adding expense correctly", () => {
     const uID = "testuserid123";
@@ -46,4 +46,21 @@ test("should execute effects for editing expense correctly", () => {
     expect(selectResult).toEqual(select(getUIDMock));
     expect(callResult).toEqual(call(editInDbMock, uID, expenseID, edited));
     expect(putResult).toEqual(put(editExpense(expenseID, edited)));
+});
+
+test("should execute effects for removing expense correctly", () => {
+    const uID = "testuserid123";
+    const expenseID = "testexpenseid123";
+    const getUIDMock = () => {};
+    const removeFromDbMock = () => {};
+    const action = startRemoveExpense2({ id: expenseID });
+    const saga = removeExpenseSaga(getUIDMock, removeFromDbMock, action);
+
+    const selectResult = saga.next().value;
+    const callResult = saga.next(uID).value;
+    const putResult = saga.next().value;
+
+    expect(selectResult).toEqual(select(getUIDMock));
+    expect(callResult).toEqual(call(removeFromDbMock, uID, expenseID));
+    expect(putResult).toEqual(put(removeExpense({ id: expenseID })));
 });

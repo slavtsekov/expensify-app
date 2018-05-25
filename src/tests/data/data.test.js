@@ -1,4 +1,4 @@
-import { add, edit } from "../../data/data";
+import { add, edit, remove } from "../../data/data";
 import expenses from "../fixtures/expenses";
 
 test("should add expense to app data successfully", () => {
@@ -21,5 +21,15 @@ test("should edit expense in app data successfully", async () => {
     expect(response).toBeFalsy();
 });
 
+
+test("should remove expense from app data successfully", async () => {
+    const uid = "testuserid456";
+    const id = "testexpenseid675";
+    let response = "some response";
+
+    response = await remove(uid, id);
+    
+    expect(response).toBeFalsy();
+});
 
 
