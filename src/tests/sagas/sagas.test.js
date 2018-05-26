@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { addExpenseSaga, editExpenseSaga, removeExpenseSaga } from "../../sagas/sagas";
+import { addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga } from "../../sagas/sagas";
 import expenses from "../fixtures/expenses";
-import { addExpense, startAddExpense2, editExpense, startEditExpense2, startRemoveExpense2, removeExpense } from "../../actions/expenses";
+import { addExpense, startAddExpense2, editExpense, startEditExpense2, startRemoveExpense2, removeExpense, startSetExpenses2, setExpenses } from "../../actions/expenses";
 
 test("should execute effects for adding expense correctly", () => {
     const uID = "testuserid123";
@@ -63,4 +63,29 @@ test("should execute effects for removing expense correctly", () => {
     expect(selectResult).toEqual(select(getUIDMock));
     expect(callResult).toEqual(call(removeFromDbMock, uID, expenseID));
     expect(putResult).toEqual(put(removeExpense({ id: expenseID })));
+});
+
+test("should execute effects for retrieving expenses correctly", () => {
+    const uID = "testuserid123";
+    const expenseID = "testexpenseid123";
+    const snapshot = [{
+        key: expenseID,
+        val: () => expenses[2]
+    }];
+    const getUIDMock = () => {};
+    const getFromDbMock = () => {};
+    const onSuccessSpy = jest.fn();
+    const action = startSetExpenses2(onSuccessSpy);
+    const saga = setExpensesSaga(getUIDMock, getFromDbMock, action);
+
+    const selectResult = saga.next().value;
+    const callResult = saga.next(uID).value;
+    const putResult = saga.next(snapshot).value;
+
+    expect(selectResult).toEqual(select(getUIDMock));
+    expect(callResult).toEqual(call(getFromDbMock, uID));
+    expect(putResult).toEqual(put(setExpenses([{
+        id: expenseID,
+        ...expenses[2]
+    }])));
 });

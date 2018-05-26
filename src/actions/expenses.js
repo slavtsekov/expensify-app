@@ -85,6 +85,11 @@ const setExpenses = (expenses) => ({
     expenses
 });
 
+const startSetExpenses2 = (success) => ({
+    type: "START_SET_EXPENSES",
+    success
+});
+
 const startSetExpenses = () => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
@@ -114,5 +119,6 @@ export {
     startEditExpense,
     startEditExpense2,
     setExpenses,
-    startSetExpenses
+    startSetExpenses,
+    startSetExpenses2
 };

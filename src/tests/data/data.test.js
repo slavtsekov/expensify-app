@@ -1,4 +1,4 @@
-import { add, edit, remove } from "../../data/data";
+import { add, edit, remove, get } from "../../data/data";
 import expenses from "../fixtures/expenses";
 
 test("should add expense to app data successfully", () => {
@@ -30,6 +30,20 @@ test("should remove expense from app data successfully", async () => {
     response = await remove(uid, id);
     
     expect(response).toBeFalsy();
+});
+
+test("should retrieve expenses from app data successfully", (done) => {
+    const uid = "testuserid456";
+
+    get(uid).then((snapshot) => {
+        const content = snapshot.val();
+        const expense = content[Object.keys(content)[0]];
+        expect(expense).toHaveProperty("description");
+        expect(expense).toHaveProperty("createdAt");
+        expect(expense).toHaveProperty("amount");
+        expect(expense).toHaveProperty("note");
+        done();
+    });
 });
 
 

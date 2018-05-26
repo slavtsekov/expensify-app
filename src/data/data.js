@@ -10,6 +10,10 @@ const edit = (uid, expenseId, edited) => {
 
 const remove = (uid, expenseId) => {
     return database.ref(`users/${uid}/expenses/${expenseId}`).remove()
-}
+};
 
-export { add, edit, remove };
+const get = (uid) => {
+    return database.ref(`users/${uid}/expenses`).once("value");
+};
+
+export { add, edit, remove, get };
