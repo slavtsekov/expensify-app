@@ -1,16 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
+import DeleteModal from "./DeleteModal";
 import { requestEditExpense, requestRemoveExpense } from "../actions/expenses";
 
 export class EditExpensePage extends React.Component {
+    state = {
+        deletePending: false
+    };
     editExpense = (updated) => { 
         this.props.startEditExpense(this.props.expense.id, updated);
         this.props.history.push("/");
     };
+    triggerRemove = () => {
+        this.setState(() => ({
+            deletePending: true
+        }));
+    };
     removeExpense = () => {
         this.props.startRemoveExpense({ id: this.props.expense.id });
         this.props.history.push("/");
+    };
+    cancelRemove = () => {
+        this.setState(() => ({
+            deletePending: false
+        }));       
     };
     render() {
         return (
@@ -27,10 +41,15 @@ export class EditExpensePage extends React.Component {
                     />
                     <button 
                         className="button button--secondary" 
-                        onClick={this.removeExpense}>
+                        onClick={this.triggerRemove}>
                         Remove Expense
                     </button>
                 </div>
+                <DeleteModal 
+                    isOpen={this.state.deletePending} 
+                    handleAccept={this.removeExpense}
+                    handleDecline={this.cancelRemove}
+                />
             </div>            
         );
     }

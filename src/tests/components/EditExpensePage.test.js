@@ -29,9 +29,21 @@ test("should handle expense edit", () => {
     expect(startEditExpenseSpy).toHaveBeenLastCalledWith(editedExpense.id, updated);
 });
 
-test("should handle expense delete", () => {
+test("should trigger expense delete", () => {
     wrapper.find("button").simulate("click");
+
+    expect(wrapper.state("deletePending")).toBe(true);
+});
+
+test("should handle expense delete", () => {
+    wrapper.find("DeleteModal").prop("handleAccept")();
 
     expect(startRemoveExpenseSpy).toHaveBeenLastCalledWith({ id: editedExpense.id });
     expect(historyMock.push).toHaveBeenLastCalledWith("/");
+});
+
+test("should cancel expense delete", () => {
+    wrapper.find("DeleteModal").prop("handleDecline")();
+
+    expect(wrapper.state("deletePending")).toBe(false);
 });
