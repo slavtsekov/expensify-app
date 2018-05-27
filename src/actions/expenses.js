@@ -5,7 +5,7 @@ const addExpense = (expense) => ({
     expense
 });
 
-const startAddExpense2 = (expenseData = {}) => {
+const requestAddExpense = (expenseData = {}) => {
     const { 
         description = "",
         note = "",
@@ -15,7 +15,7 @@ const startAddExpense2 = (expenseData = {}) => {
     const expense = { description, note, amount, createdAt };
 
     return {
-        type: "START_ADD_EXPENSE",
+        type: "REQUEST_ADD_EXPENSE",
         expense
     };
 };
@@ -25,8 +25,8 @@ const removeExpense = ({ id }) => ({
     id
 });
 
-const startRemoveExpense2 = ({ id }) => ({
-    type: "START_REMOVE_EXPENSE",
+const requestRemoveExpense = ({ id }) => ({
+    type: "REQUEST_REMOVE_EXPENSE",
     id 
 });
 
@@ -36,8 +36,8 @@ const editExpense = (id, edited) => ({
     edited
 });
 
-const startEditExpense2 = (id, edited) => ({
-    type: "START_EDIT_EXPENSE",
+const requestEditExpense = (id, edited) => ({
+    type: "REQUEST_EDIT_EXPENSE",
     id,
     edited
 });
@@ -47,18 +47,18 @@ const setExpenses = (expenses) => ({
     expenses
 });
 
-const startSetExpenses2 = (success) => ({
-    type: "START_SET_EXPENSES",
+const requestSetExpenses = (success) => ({
+    type: "REQUEST_SET_EXPENSES",
     success
 });
 
 export { 
     addExpense, 
-    startAddExpense2,
+    requestAddExpense,
     removeExpense,
-    startRemoveExpense2,
+    requestRemoveExpense,
     editExpense,
-    startEditExpense2,
+    requestEditExpense,
     setExpenses,
-    startSetExpenses2
+    requestSetExpenses
 };

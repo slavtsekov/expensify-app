@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import AppRouter, { history } from "./routers/AppRouter";
 import getStore from "./store/configureStore";
-import { startSetExpenses2 } from "./actions/expenses";
+import { requestSetExpenses } from "./actions/expenses";
 import { login, logout } from "./actions/auth";
 import getVisibleExpenses from "./selectors/expenses";
 import { firebase } from "./firebase/firebase";
@@ -34,7 +34,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"));
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid));
-        store.dispatch(startSetExpenses2(() => {
+        store.dispatch(requestSetExpenses(() => {
             renderApp();
             if (history.location.pathname === "/") {
                 history.push("/dashboard");

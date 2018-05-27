@@ -5,14 +5,14 @@ import { add as addToDb, edit as editInDb, remove as removeFromDb, get as getFro
 
 export function* watcherSaga() {
     yield [
-        takeLatest("START_ADD_EXPENSE", addExpenseSaga, getUID, addToDb),
-        takeLatest("START_EDIT_EXPENSE", editExpenseSaga, getUID, editInDb),
-        takeLatest("START_REMOVE_EXPENSE", removeExpenseSaga, getUID, removeFromDb),
-        takeLatest("START_SET_EXPENSES", setExpensesSaga, getUID, getFromDb)
+        takeLatest("REQUEST_ADD_EXPENSE", addExpenseSaga, getUID, addToDb),
+        takeLatest("REQUEST_EDIT_EXPENSE", editExpenseSaga, getUID, editInDb),
+        takeLatest("REQUEST_REMOVE_EXPENSE", removeExpenseSaga, getUID, removeFromDb),
+        takeLatest("REQUEST_SET_EXPENSES", setExpensesSaga, getUID, getFromDb)
     ];
 }
 
-export function* addExpenseSaga(getUID, addToDb, action) {
+function* addExpenseSaga(getUID, addToDb, action) {
     const uid = yield select(getUID);
     const expense = action.expense;
     const response = yield call(addToDb, uid, expense);
@@ -22,21 +22,21 @@ export function* addExpenseSaga(getUID, addToDb, action) {
     }));
 }
 
-export function* editExpenseSaga(getUID, editInDb, action) {
+function* editExpenseSaga(getUID, editInDb, action) {
     const uid = yield select(getUID);
     const { id, edited } = action;
     yield call(editInDb, uid, id, edited);
     yield put(editExpense(id, edited));
 }
 
-export function* removeExpenseSaga(getUID, removeFromDb, action) {
+function* removeExpenseSaga(getUID, removeFromDb, action) {
     const uid = yield select(getUID);
     const id = action.id;
     yield call(removeFromDb, uid, id);
     yield put(removeExpense({ id }));
 }
 
-export function* setExpensesSaga(getUID, getFromDb, action) {
+function* setExpensesSaga(getUID, getFromDb, action) {
     const uid = yield select(getUID);
     const snapshot = yield call(getFromDb, uid);
     const expenses = [];
@@ -49,3 +49,5 @@ export function* setExpensesSaga(getUID, getFromDb, action) {
     yield put(setExpenses(expenses));
     action.success();
 }
+
+export { addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga };

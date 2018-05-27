@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
 import { addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga } from "../../sagas/sagas";
 import expenses from "../fixtures/expenses";
-import { addExpense, startAddExpense2, editExpense, startEditExpense2, startRemoveExpense2, removeExpense, startSetExpenses2, setExpenses } from "../../actions/expenses";
+import { addExpense, requestAddExpense, editExpense, requestEditExpense, removeExpense, requestRemoveExpense, setExpenses, requestSetExpenses } from "../../actions/expenses";
 
 test("should execute effects for adding expense correctly", () => {
     const uID = "testuserid123";
@@ -14,7 +14,7 @@ test("should execute effects for adding expense correctly", () => {
     const addToDbMock = () => {};
     const getUIDMock = () => {};
     const { description, note, amount, createdAt } = expenses[1];
-    const action = startAddExpense2(expenses[1]);
+    const action = requestAddExpense(expenses[1]);
     const expenseData = action.expense;
     const saga = addExpenseSaga(getUIDMock, addToDbMock, action);
 
@@ -36,7 +36,7 @@ test("should execute effects for editing expense correctly", () => {
     const editInDbMock = () => {};
     const expenseID = "testexpenseid123";
     const edited = expenses[0];
-    const action = startEditExpense2(expenseID, edited);
+    const action = requestEditExpense(expenseID, edited);
     const saga = editExpenseSaga(getUIDMock, editInDbMock, action);
 
     const selectResult = saga.next().value;
@@ -53,7 +53,7 @@ test("should execute effects for removing expense correctly", () => {
     const expenseID = "testexpenseid123";
     const getUIDMock = () => {};
     const removeFromDbMock = () => {};
-    const action = startRemoveExpense2({ id: expenseID });
+    const action = requestRemoveExpense({ id: expenseID });
     const saga = removeExpenseSaga(getUIDMock, removeFromDbMock, action);
 
     const selectResult = saga.next().value;
@@ -75,7 +75,7 @@ test("should execute effects for retrieving expenses correctly", () => {
     const getUIDMock = () => {};
     const getFromDbMock = () => {};
     const onSuccessSpy = jest.fn();
-    const action = startSetExpenses2(onSuccessSpy);
+    const action = requestSetExpenses(onSuccessSpy);
     const saga = setExpensesSaga(getUIDMock, getFromDbMock, action);
 
     const selectResult = saga.next().value;
