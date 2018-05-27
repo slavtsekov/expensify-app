@@ -3,7 +3,7 @@ import getUID from "../selectors/auth";
 import { addExpense, editExpense, removeExpense, setExpenses } from "../actions/expenses";
 import { add as addToDb, edit as editInDb, remove as removeFromDb, get as getFromDb } from "../data/data";
 
-export function* watcherSaga() {
+function* watcherSaga() {
     yield [
         takeLatest("REQUEST_ADD_EXPENSE", addExpenseSaga, getUID, addToDb),
         takeLatest("REQUEST_EDIT_EXPENSE", editExpenseSaga, getUID, editInDb),
@@ -50,4 +50,4 @@ function* setExpensesSaga(getUID, getFromDb, action) {
     action.success();
 }
 
-export { addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga };
+export { watcherSaga, addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga };

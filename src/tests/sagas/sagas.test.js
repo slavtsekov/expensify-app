@@ -3,9 +3,10 @@ import { addExpenseSaga, editExpenseSaga, removeExpenseSaga, setExpensesSaga } f
 import expenses from "../fixtures/expenses";
 import { addExpense, requestAddExpense, editExpense, requestEditExpense, removeExpense, requestRemoveExpense, setExpenses, requestSetExpenses } from "../../actions/expenses";
 
+const uID = "testuserid123";
+const expenseID = "testexpenseid123";
+
 test("should execute effects for adding expense correctly", () => {
-    const uID = "testuserid123";
-    const expenseID = "testexpenseid123";
     const addToDbResult = { 
         ref: { 
             key: expenseID 
@@ -31,10 +32,8 @@ test("should execute effects for adding expense correctly", () => {
 });
 
 test("should execute effects for editing expense correctly", () => {
-    const uID = "testuserid123";
     const getUIDMock = () => {};
     const editInDbMock = () => {};
-    const expenseID = "testexpenseid123";
     const edited = expenses[0];
     const action = requestEditExpense(expenseID, edited);
     const saga = editExpenseSaga(getUIDMock, editInDbMock, action);
@@ -49,8 +48,6 @@ test("should execute effects for editing expense correctly", () => {
 });
 
 test("should execute effects for removing expense correctly", () => {
-    const uID = "testuserid123";
-    const expenseID = "testexpenseid123";
     const getUIDMock = () => {};
     const removeFromDbMock = () => {};
     const action = requestRemoveExpense({ id: expenseID });
@@ -66,8 +63,6 @@ test("should execute effects for removing expense correctly", () => {
 });
 
 test("should execute effects for retrieving expenses correctly", () => {
-    const uID = "testuserid123";
-    const expenseID = "testexpenseid123";
     const snapshot = [{
         key: expenseID,
         val: () => expenses[2]
