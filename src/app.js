@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import AppRouter, { history } from "./routers/AppRouter";
 import getStore from "./store/configureStore";
-import { startSetExpenses, startSetExpenses2 } from "./actions/expenses";
+import { startSetExpenses2 } from "./actions/expenses";
 import { login, logout } from "./actions/auth";
 import getVisibleExpenses from "./selectors/expenses";
 import { firebase } from "./firebase/firebase";
@@ -40,12 +40,6 @@ firebase.auth().onAuthStateChanged((user) => {
                 history.push("/dashboard");
             }
         }));
-        // store.dispatch(startSetExpenses()).then(() => {
-        //     renderApp();
-        //     if (history.location.pathname === "/") {
-        //         history.push("/dashboard");
-        //     }
-        // });
     } else {
         store.dispatch(logout());
         renderApp();
