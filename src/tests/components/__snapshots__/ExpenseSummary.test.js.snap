@@ -1,5 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should render ExpenseSummary with hidden expense 1`] = `
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        3
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        $0.23
+      </span>
+      .
+    </h1>
+    <h2
+      className="page-header__title subtitle"
+    >
+      Not showing 
+      <span>
+        1
+      </span>
+       
+      expense
+       because of filters.
+    </h2>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        replace={false}
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`should render ExpenseSummary with multiple expenses 1`] = `
 <div
   className="page-header"
@@ -22,6 +70,54 @@ exports[`should render ExpenseSummary with multiple expenses 1`] = `
       </span>
       .
     </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        replace={false}
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render ExpenseSummary with multiple hidden expenses 1`] = `
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        3
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        $0.23
+      </span>
+      .
+    </h1>
+    <h2
+      className="page-header__title subtitle"
+    >
+      Not showing 
+      <span>
+        5
+      </span>
+       
+      expenses
+       because of filters.
+    </h2>
     <div
       className="page-header__actions"
     >
