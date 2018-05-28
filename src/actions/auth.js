@@ -1,13 +1,19 @@
-import { firebase, googleAuthProvider } from "../firebase/firebase";
+import { firebase, googleAuthProvider, facebookAuthProvider } from "../firebase/firebase";
 
 const login = (uid) => ({
     type: "LOGIN",
     uid
 });
 
-const startLogin = () => {
+const startGoogleLogin = () => {
     return () => {
         return firebase.auth().signInWithPopup(googleAuthProvider);
+    };
+};
+
+const startFacebookLogin = () => {
+    return () => {
+        return firebase.auth().signInWithPopup(facebookAuthProvider);
     };
 };
 
@@ -21,4 +27,4 @@ const startLogout = () => {
     };
 };
 
-export { startLogin, startLogout, login, logout };
+export { startGoogleLogin, startFacebookLogin, startLogout, login, logout };

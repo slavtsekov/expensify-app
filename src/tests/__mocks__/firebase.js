@@ -34,7 +34,8 @@ const database = () => ({
 });
 
 const auth = {
-    GoogleAuthProvider: () => {}
+    GoogleAuthProvider: () => {},
+    FacebookAuthProvider: () => {}
 };
 
 export { initializeApp, database, auth };
