@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startGoogleLogin, startFacebookLogin, startTwitterLogin } from "../actions/auth";
+import { startGoogleLogin, startFacebookLogin, startTwitterLogin, startGithubLogin } from "../actions/auth";
 
 export const LoginPage = (props) => (
     <div className="box-layout">
@@ -22,6 +22,11 @@ export const LoginPage = (props) => (
                 onClick={props.startTwitterLogin}>
                 Login with Twitter
             </button>
+            <button 
+                className="button" 
+                onClick={props.startGithubLogin}>
+                Login with GitHub
+            </button>
         </div>
     </div>
 );
@@ -30,7 +35,8 @@ export const LoginPage = (props) => (
 const mapDispatchToProps = (dispatch) => ({
     startGoogleLogin: () => dispatch(startGoogleLogin()),
     startFacebookLogin: () => dispatch(startFacebookLogin()),
-    startTwitterLogin: () => dispatch(startTwitterLogin())
+    startTwitterLogin: () => dispatch(startTwitterLogin()),
+    startGithubLogin: () => dispatch(startGithubLogin())
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);

@@ -30,6 +30,11 @@ exports[`should render LoginPage correctly 1`] = `
     >
       Login with Twitter
     </button>
+    <button
+      className="button"
+    >
+      Login with GitHub
+    </button>
   </div>
 </div>
 `;
