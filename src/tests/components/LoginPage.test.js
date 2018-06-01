@@ -25,3 +25,12 @@ test("should start facebook login on button click", () => {
 
     expect(startLoginMock).toHaveBeenCalled();
 });
+
+test("should start twitter login on button click", () => {
+    const startLoginMock = jest.fn();
+    const wrapper = shallow(<LoginPage startTwitterLogin={startLoginMock} />);
+
+    wrapper.find("button").at(2).simulate("click");
+
+    expect(startLoginMock).toHaveBeenCalled();
+});
