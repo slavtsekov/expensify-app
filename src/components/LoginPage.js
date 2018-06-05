@@ -8,22 +8,22 @@ export const LoginPage = (props) => (
             <h1 className="box-layout__title">Expensify</h1>
             <p>It's time to get your expenses under control.</p>
             <button 
-                className="button" 
+                className="button box-layout__option" 
                 onClick={props.startGoogleLogin}>
                 Login with Google
             </button>
             <button 
-                className="button" 
+                className="button box-layout__option" 
                 onClick={props.startFacebookLogin}>
                 Login with Facebook
             </button>
             <button 
-                className="button" 
+                className="button box-layout__option" 
                 onClick={props.startTwitterLogin}>
                 Login with Twitter
             </button>
             <button 
-                className="button" 
+                className="button box-layout__option" 
                 onClick={props.startGithubLogin}>
                 Login with GitHub
             </button>
