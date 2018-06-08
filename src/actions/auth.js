@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider, githubAuthProvider } from "../firebase/firebase";
+import { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider, githubAuthProvider, getProviderNameForProviderId } from "../firebase/firebase";
 
 const login = (uid) => ({
     type: "LOGIN",
@@ -25,7 +25,17 @@ const startTwitterLogin = () => {
 
 const startGithubLogin = () => {
     return () => {
-        return firebase.auth().signInWithPopup(githubAuthProvider);
+        const auth = firebase.auth();
+        return auth.signInWithPopup(githubAuthProvider).catch((error) => {
+            if (error.code === "auth/account-exists-with-different-credential") {
+                var pendingCred = error.credential;
+                var email = error.email;
+                auth.fetchSignInMethodsForEmail(email).then((methods) => {
+                    var provider = getProviderNameForProviderId(methods[0]);
+                    console.log(`This provider's email is already used by your ${provider} account.`);
+                });
+            }
+        });
     };
 };
 

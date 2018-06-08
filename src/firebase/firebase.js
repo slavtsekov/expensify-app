@@ -17,4 +17,19 @@ const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 var twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
 var githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-export { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider, githubAuthProvider, database as default };
+const getProviderNameForProviderId = (value) => {
+    switch(value) {
+        case googleAuthProvider.providerId:
+            return "Google";
+        case facebookAuthProvider.providerId:
+            return "Facebook";
+        case twitterAuthProvider.providerId:
+            return "Twitter";
+        case githubAuthProvider.providerId:
+            return "Github";
+        default:
+            return "Unsupported";
+    }
+};
+
+export { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider, githubAuthProvider, getProviderNameForProviderId, database as default };
