@@ -17,24 +17,31 @@ exports[`should render LoginPage correctly 1`] = `
     </p>
     <button
       className="button box-layout__option"
+      onClick={[Function]}
     >
       Login with Google
     </button>
     <button
       className="button box-layout__option"
+      onClick={[Function]}
     >
       Login with Facebook
     </button>
     <button
       className="button box-layout__option"
+      onClick={[Function]}
     >
       Login with Twitter
     </button>
     <button
       className="button box-layout__option"
+      onClick={[Function]}
     >
       Login with GitHub
     </button>
   </div>
+  <InfoModal
+    handleClose={[Function]}
+  />
 </div>
 `;
