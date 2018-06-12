@@ -12,24 +12,26 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-var twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
-var githubAuthProvider = new firebase.auth.GithubAuthProvider();
+const authProviders = {
+    google: new firebase.auth.GoogleAuthProvider(),
+    facebook: new firebase.auth.FacebookAuthProvider(),
+    twitter: new firebase.auth.TwitterAuthProvider(),
+    github: new firebase.auth.GithubAuthProvider()
+};
 
 const getProviderNameForProviderId = (value) => {
     switch(value) {
-        case googleAuthProvider.providerId:
+        case authProviders.google.providerId:
             return "Google";
-        case facebookAuthProvider.providerId:
+        case authProviders.facebook.providerId:
             return "Facebook";
-        case twitterAuthProvider.providerId:
+        case authProviders.twitter.providerId:
             return "Twitter";
-        case githubAuthProvider.providerId:
+        case authProviders.github.providerId:
             return "Github";
         default:
             return "Unsupported";
     }
 };
 
-export { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider, githubAuthProvider, getProviderNameForProviderId, database as default };
+export { firebase, authProviders, getProviderNameForProviderId, database as default };

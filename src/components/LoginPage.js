@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startGoogleLogin, startFacebookLogin, startTwitterLogin, startGithubLogin } from "../actions/auth";
+import { startLogin } from "../actions/auth";
 import InfoModal from "./InfoModal";
 
 export class LoginPage extends React.Component {
@@ -69,10 +69,10 @@ export class LoginPage extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startGoogleLogin: () => dispatch(startGoogleLogin()),
-    startFacebookLogin: () => dispatch(startFacebookLogin()),
-    startTwitterLogin: () => dispatch(startTwitterLogin()),
-    startGithubLogin: () => dispatch(startGithubLogin())
+    startGoogleLogin: () => dispatch(startLogin("google")),
+    startFacebookLogin: () => dispatch(startLogin("facebook")),
+    startTwitterLogin: () => dispatch(startLogin("twitter")),
+    startGithubLogin: () => dispatch(startLogin("github"))
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);
