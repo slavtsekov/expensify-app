@@ -1,22 +1,10 @@
-import { firebase, authProviders, getProviderNameForProviderId } from "../firebase/firebase";
+import { firebase, authProviders } from "../firebase/firebase";
+import errorHandler from "../utils/errorHandler";
 
 const login = (uid) => ({
     type: "LOGIN",
     uid
 });
-
-const errorHandler = (error) => {
-    if (error.code === "auth/account-exists-with-different-credential") {
-        var pendingCred = error.credential;
-        var email = error.email;
-        return firebase.auth().fetchSignInMethodsForEmail(email).then((methods) => {
-            var provider = getProviderNameForProviderId(methods[0]);
-            return `This provider's email is already used by your ${provider} account.`;
-        });
-    } else {
-        return error.message;
-    }
-};
 
 const startLogin = (method) => {
     return () => {

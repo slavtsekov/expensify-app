@@ -40,6 +40,12 @@ const authResult = {
     },
     changeState: function(user) {
         this.stateChangedCallback(user);
+    },
+    fetchSignInMethodsForEmail: () => {
+        return new Promise(function(resolve) {
+            const methods = ["google.com"];
+            resolve(methods);
+        });     
     }
 };
 const auth = () => (authResult);
