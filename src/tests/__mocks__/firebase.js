@@ -33,11 +33,20 @@ const database = () => ({
     })
 });
 
-const auth = {
-    GoogleAuthProvider: () => {},
-    FacebookAuthProvider: () => {},
-    TwitterAuthProvider: () => {},
-    GithubAuthProvider: () => {}
+const authResult = {
+    stateChangedCallback: undefined,
+    onAuthStateChanged: function(callback) {
+        this.stateChangedCallback = callback;  
+    },
+    changeState: function(user) {
+        this.stateChangedCallback(user);
+    }
 };
+const auth = () => (authResult);
+
+auth.GoogleAuthProvider = () => {};
+auth.FacebookAuthProvider = () => {};
+auth.TwitterAuthProvider = () => {};
+auth.GithubAuthProvider = () => {};
 
 export { initializeApp, database, auth };

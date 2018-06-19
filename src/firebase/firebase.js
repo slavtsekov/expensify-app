@@ -34,4 +34,14 @@ const getProviderNameForProviderId = (value) => {
     }
 };
 
-export { firebase, authProviders, getProviderNameForProviderId, database as default };
+const configureAuthentication = (startLogin, startLogout) => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            startLogin(user);
+        } else {
+            startLogout();
+        }
+    });
+};
+
+export { firebase, authProviders, getProviderNameForProviderId, configureAuthentication, database as default };
