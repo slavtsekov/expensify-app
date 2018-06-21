@@ -10,7 +10,6 @@ const errorHandler = (error) => {
         var email = error.email;
         return firebase.auth().fetchSignInMethodsForEmail(email).then((methods) => {
             var provider = getProviderNameForProviderId(methods[0]);
-            console.log(provider);
             return `This provider's email is already used by your ${provider} account.`;
         });
     } else if (error.code === errorCodes.NETWORK_ERROR) {

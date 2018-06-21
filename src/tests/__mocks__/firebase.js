@@ -42,7 +42,7 @@ const authResult = {
         this.stateChangedCallback(user);
     },
     fetchSignInMethodsForEmail: () => {
-        return new Promise(function(resolve) {
+        return new Promise((resolve) => {
             const methods = ["google.com"];
             resolve(methods);
         });     
@@ -50,7 +50,9 @@ const authResult = {
 };
 const auth = () => (authResult);
 
-auth.GoogleAuthProvider = () => {};
+auth.GoogleAuthProvider = () => ({
+    providerId: "google.com"
+});
 auth.FacebookAuthProvider = () => {};
 auth.TwitterAuthProvider = () => {};
 auth.GithubAuthProvider = () => {};
