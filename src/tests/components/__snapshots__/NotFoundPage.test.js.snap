@@ -2,13 +2,22 @@
 
 exports[`should render NotFoundPage 1`] = `
 <div>
-  Page not found - 
-  <Link
-    replace={false}
-    to="/"
+  <Connect(Header) />
+  <div
+    className="content-container not-found-message"
   >
-    Go home
-  </Link>
-  .
+    <h1>
+      404 - Page Not Found
+    </h1>
+    <p>
+      <Link
+        className="not-found-message__link"
+        replace={false}
+        to="/"
+      >
+        Go home
+      </Link>
+    </p>
+  </div>
 </div>
 `;
