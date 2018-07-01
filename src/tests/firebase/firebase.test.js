@@ -1,4 +1,4 @@
-import { configureAuthentication, firebase } from "../../firebase/firebase";
+import { configureAuthentication, auth } from "../../firebase/firebase";
 
 test("Login handler should be called on login", () => {
     const user = "user1";
@@ -6,7 +6,7 @@ test("Login handler should be called on login", () => {
     const startLogoutMock = jest.fn();
     configureAuthentication(startLoginMock, startLogoutMock);
     
-    firebase.auth().changeState(user);
+    auth.changeState(user);
 
     expect(startLoginMock).toHaveBeenLastCalledWith(user);
 });
@@ -16,7 +16,7 @@ test("Logout handler should be called on logout", () => {
     const startLogoutMock = jest.fn();
     configureAuthentication(startLoginMock, startLogoutMock);
     
-    firebase.auth().changeState();
+    auth.changeState();
 
     expect(startLogoutMock).toHaveBeenCalled();
 });

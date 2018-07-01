@@ -1,5 +1,3 @@
-import database from "../firebase/firebase";
-
 const addExpense = (expense) => ({
     type: "ADD_EXPENSE",
     expense

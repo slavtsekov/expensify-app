@@ -1,4 +1,4 @@
-import { firebase, authProviders } from "../firebase/firebase";
+import { auth, authProviders } from "../firebase/firebase";
 import errorHandler from "../utils/errorHandler";
 
 const login = (uid) => ({
@@ -10,7 +10,7 @@ const startLogin = (method) => {
     return () => {
         const authProvider = authProviders[method];
         if (!authProvider) return;
-        return firebase.auth().signInWithPopup(authProvider).catch(errorHandler);
+        return auth.signInWithPopup(authProvider).catch(errorHandler);
     };
 };
 
@@ -20,7 +20,7 @@ const logout = () => ({
 
 const startLogout = () => {
     return () => {
-        return firebase.auth().signOut();
+        return auth.signOut();
     };
 };
 

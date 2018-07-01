@@ -11,7 +11,6 @@ const config = {
 
 firebase.initializeApp(config);
 
-const database = firebase.database();
 const authProviders = {
     google: new firebase.auth.GoogleAuthProvider(),
     facebook: new firebase.auth.FacebookAuthProvider(),
@@ -44,4 +43,7 @@ const configureAuthentication = (startLogin, startLogout) => {
     });
 };
 
-export { firebase, authProviders, getProviderNameForProviderId, configureAuthentication, database as default };
+const database = firebase.database();
+const auth = firebase.auth();
+
+export { auth, authProviders, getProviderNameForProviderId, configureAuthentication, database as default };

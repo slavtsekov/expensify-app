@@ -5,7 +5,6 @@ import {
     setExpenses
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
-import database from "../../firebase/firebase";
 
 test("should setup add expense action object with data", () => {
     const action = addExpense(expenses[2]);
